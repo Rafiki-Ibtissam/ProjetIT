@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:outputStylesheet library="webjars" name="bootstrap/5.3.3/css/bootstrap.min.css" />
+
+<h:head>
+   <title>Gestion des étudiants</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css"/>
+
+</h:head>
+<h:body>
+   <div class="container">
+   <h:form id="formAjout">
+      <div class="d-flex justify-content-between mb-3 mt-3">
+         <div class="mb-3">
+            <h:button class="btn btn-primary ml-2" value="#{msg['ajouter.etudiant']}" outcome="ajouterEtudiant.xhtml" />
+         </div>
+         <div class="d-flex justify-content-end">
+            <h:commandLink action="#{etudiantController.changeLocale('fr')}" style="font-size: 2rem; margin-right: 10px;">
+               <span class="flag-icon flag-icon-fr"/>
+            </h:commandLink>
+            <h:commandLink action="#{etudiantController.changeLocale('en')}" style="font-size: 2rem;">
+               <span class="flag-icon flag-icon-us"/>
+            </h:commandLink>
+         </div>
+      </div>
+
+      <div class="table-responsive mt-3 mb-2">
+      <h:dataTable  class="table table-success table-striped  table-hover " id="tableEtudiants" value="#{etudiantController.etudiants}" var="etudiant" >
+         <h:column>
+            <f:facet name="header" >
+               <h:outputText value="#{msg['id']}" />
+            </f:facet>
+            #{etudiant.id}
+         </h:column>
+         <h:column>
+            <f:facet name="header" >
+               <h:outputText value="#{msg['nom']}" />
+            </f:facet>
+            #{etudiant.nom}
+         </h:column>
+         <h:column>
+            <f:facet name="header" >
+               <h:outputText value="#{msg['prenom']}" />
+            </f:facet>
+            #{etudiant.prenom}
+         </h:column>
+         <h:column>
+            <f:facet name="header" >
+               <h:outputText value="#{msg['email']}" />
+            </f:facet>
+            #{etudiant.email}
+         </h:column>
+         <h:column>
+            <f:facet name="header" >
+               <h:outputText value="#{msg['date.naissance']}" />
+            </f:facet>
+            #{etudiant.naissance}
+         </h:column>
+         <h:column>
+            <f:facet name="header" value="#{msg['actions']}">
+               <h:outputText value="#{msg['actions']}" />
+            </f:facet>
+
+            <h:button class="btn btn-primary btn-sm" value="#{msg['modifier']}" outcome="modifierEtudiant.xhtml">
+               <f:param name="id" value="#{etudiant.id}" />
+            </h:button>
+
+            <h:commandButton class="btn btn-danger btn-sm" value="#{msg['supprimer']}" action="#{etudiantController.supprimerEtudiant(etudiant.id)}" onclick="return confirm('Voulez-vous vraiment supprimer cet étudiant de id = #{etudiant.id} ?')"   />
+         </h:column>
+
+      </h:dataTable>
+
+      </div>
+
+   </h:form>
+</div>
+</h:body>
+
+</html>

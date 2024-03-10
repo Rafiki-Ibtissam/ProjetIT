@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+   <title>Ajouter des étudiants</title>
+   <h:outputStylesheet library="webjars" name="bootstrap/5.3.3/css/bootstrap.min.css" />
+</h:head>
+<h:body>
+<h:form id="form">
+<div class="container">
+   <div class="row justify-content-center mt-5">
+      <div class="col-md-8">
+         <div class="card border-primary">
+            <div class="card-body">
+               <h3 class="text-center text-primary"  >Ajouter un étudiant </h3>
+
+               <div class="row mb-3">
+                     <h:outputLabel for="ID" class="col-sm-2 col-form-label">ID: </h:outputLabel>
+                  <div class="col-sm-8 mb-3">
+                     <h:inputText class="form-control" id="ID" value="#{etudiantController.etudiant.id}" placeholder="ID" required="true" requiredMessage="ID est requis"/>
+                     <h:message for="ID" style="color: red;" />
+                  </div>
+               </div>
+               <div class="row mb-3">
+                     <h:outputLabel for="nom" class="col-sm-2 col-form-label">Nom: </h:outputLabel>
+                  <div class="col-sm-8 mb-3">
+                     <h:inputText class="form-control" type="text" id="nom" value="#{etudiantController.etudiant.nom}" placeholder="nom" required="true" requiredMessage="Nom est requis" />
+                     <h:message for="nom" style="color: red;" />
+                  </div>
+               </div>
+               <div class="row mb-3">
+                    <h:outputLabel for="prenom" class="col-sm-2 col-form-label">Prénom: </h:outputLabel>
+                  <div class="col-sm-8 mb-3">
+                    <h:inputText class="form-control" type="text" id="prenom" value="#{etudiantController.etudiant.prenom}" placeholder="prenom" required="true" requiredMessage="Prénom est requis" />
+                     <h:message for="prenom" style="color: red;" />
+                  </div>
+               </div>
+               <div class="row mb-3">
+                     <h:outputLabel for="email" class="col-sm-2 col-form-label">Email: </h:outputLabel>
+                  <div class="col-sm-8 mb-3">
+                     <h:inputText class="form-control" type="text" id="email" value="#{etudiantController.etudiant.email}" placeholder="exemple@gmail.com" required="true" requiredMessage="Email est requis">
+                        <f:validator validatorId="validateEmail" />
+                     </h:inputText>
+                     <h:message for="email" style="color: red;" />
+                  </div>
+                  </div>
+
+               <div class="row mb-3 mb-3">
+                  <h:outputLabel for="naissance" class="col-sm-2 col-form-label">Date de naissance: </h:outputLabel>
+                  <div class="col-sm-8">
+                  <h:inputText class="form-control" type="text" id="naissance" value="#{etudiantController.etudiant.naissance}" placeholder="YYYY-MM-DD" required="true" requiredMessage="Date de naissance est requise" >
+                     <f:validator validatorId="validateDate" />
+                  </h:inputText>
+                     <h:message for="naissance" style="color: red;"/>
+                  </div>
+               </div>
+
+               <div class="row mb-3">
+                  <div class="col-sm-10 sm-2">
+                     <h:commandButton class="btn btn-info" value="Ajouter" action="#{etudiantController.ajouterEtudiant()}" />
+                  </div>
+                  <div class="col-sm-2 text-right">
+                     <h:commandButton class="btn btn-info" value="Retour" immediate="true" action="etudiant"/>
+                  </div>
+               </div>
+               <h:message for="form" styleClass="error-message" />
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+</h:form>
+</h:body>
+
+</html>
